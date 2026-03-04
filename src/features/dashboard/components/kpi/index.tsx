@@ -48,7 +48,7 @@ export default function KPI() {
             key={item.id}
           >
             <span className="flex items-center gap-1 uppercase text-text-secondary text-xs">
-              <Icon size={15} /> {item.title}
+              <Icon size={12} /> {item.title}
             </span>
             <span
               className={clsx(

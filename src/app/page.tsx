@@ -7,9 +7,9 @@ import SeismicMapWrapper from '@/features/dashboard/components/map'
 
 export default function Page() {
   return (
-    <Section className="flex flex-col h-screen">
+    <Section className="flex flex-col gap-5 h-screen">
       <KPI />
-      <Container className="flex grow min-h-0">
+      <Container className="flex gap-5 grow min-h-0">
         <SeismicMapWrapper />
         <Feed />
       </Container>

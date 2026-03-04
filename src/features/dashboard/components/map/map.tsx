@@ -61,7 +61,12 @@ export default function SeismicMap() {
         </ul>
       </div>
       <MapContainer
-        style={{ height: '100%', width: '100%' }}
+        style={{
+          height: '100%',
+          width: '100%',
+          borderRadius: '6px',
+          borderColor: 'var(--color-border)',
+        }}
         center={[51.505, -0.09]}
         zoom={13}
         scrollWheelZoom={false}
