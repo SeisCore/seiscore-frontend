@@ -36,7 +36,7 @@ const iconMap = {
   'most active': MapPin,
   'total recorded': Activity,
 } as const
-export default function KPI() {
+export default function DashboardKPI() {
   return (
     <ul className="grid grid-cols-4 gap-2">
       {items.map((item) => {

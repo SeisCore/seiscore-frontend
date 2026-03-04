@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header'
-import Footer from '@/components/footer'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -30,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html className="dark" lang="en">
       <body
         className={`${inter.variable} ${jet.variable} antialiased font-inter bg-bg-secondary h-screen  flex flex-col`}
       >
