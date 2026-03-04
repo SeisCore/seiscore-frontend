@@ -31,10 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jet.variable} antialiased font-inter bg-bg-secondary`}
+        className={`${inter.variable} ${jet.variable} antialiased font-inter bg-bg-secondary h-screen overflow-hidden flex flex-col`}
       >
         <Header />
-        <main>{children}</main>
+        <main className="flex flex-col grow min-h-0">{children}</main>
       </body>
     </html>
   )

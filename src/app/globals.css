@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+
 @theme {
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f1f5f9;
@@ -27,7 +28,7 @@
 
 .dark {
   --color-bg-primary: #0a0f1e;
-  --color-bg-secondary: #0f172a;
+  --color-bg-secondary: #080d18;
   --color-bg-card: #111827;
   --color-border: #1e293b;
   --color-text-primary: #f1f5f9;
