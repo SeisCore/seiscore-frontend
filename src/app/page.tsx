@@ -1,7 +1,10 @@
+import Section from '@/components/wrappers/section'
+import KPI from '@/features/dashboard/components/kpi'
+
 export default function Page() {
   return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
+    <Section>
+      <KPI />
+    </Section>
   )
 }

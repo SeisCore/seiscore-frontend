@@ -4,7 +4,7 @@ import './globals.css'
 import Header from '@/components/header'
 
 const inter = Inter({
-  variable: '--font-sans',
+  variable: '--font-inter',
   subsets: ['latin'],
 })
 const jet = JetBrains_Mono({
@@ -30,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${jet.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${jet.variable} antialiased font-inter bg-bg-secondary`}
+      >
         <Header />
         <main>{children}</main>
       </body>
