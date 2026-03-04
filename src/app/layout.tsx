@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jet.variable} antialiased font-inter bg-bg-secondary h-screen overflow-hidden flex flex-col`}
+        className={`${inter.variable} ${jet.variable} antialiased font-inter bg-bg-secondary h-screen  flex flex-col`}
       >
         <Header />
         <main className="flex flex-col grow min-h-0">{children}</main>

@@ -66,7 +66,7 @@ export default function Feed() {
         <span className="text-xs font-mono text-text-muted">20 events</span>
       </div>
 
-      <ul className="flex flex-col overflow-y-auto">
+      <ul className="flex flex-col  overflow-y-auto">
         {mockEarthquakes.map((m, i) => (
           <li
             key={m.id}
