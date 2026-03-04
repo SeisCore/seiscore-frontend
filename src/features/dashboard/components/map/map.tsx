@@ -53,7 +53,7 @@ export default function SeismicMap() {
                 style={{ backgroundColor: colorMap[s.title] }}
               />
               <div className="flex items-center justify-between text w-full gap-4">
-                <span>{s.title}</span>
+                <span className="text-text-secondary">{s.title}</span>
                 <span className="text-text-muted">{s.value}</span>
               </div>
             </li>
