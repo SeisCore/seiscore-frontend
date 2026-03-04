@@ -1,49 +1,8 @@
 'use client'
 import Container from '@/components/wrappers/container'
 import clsx from 'clsx'
-
-const mockEarthquakes = [
-  {
-    id: 1,
-    magnitude: 5.2,
-    place: 'Central Apennines, Italy',
-    depth: 238.7,
-    time: 0,
-    severity: 'strong',
-  },
-  {
-    id: 2,
-    magnitude: 3.3,
-    place: 'Corinth Gulf, Greece',
-    depth: 259.7,
-    time: 7,
-    severity: 'light',
-  },
-  {
-    id: 3,
-    magnitude: 4.3,
-    place: 'Sicily Channel, Italy',
-    depth: 191.5,
-    time: 15,
-    severity: 'moderate',
-  },
-  {
-    id: 4,
-    magnitude: 1.0,
-    place: 'Marmara Sea, Turkey',
-    depth: 223.1,
-    time: 23,
-    severity: 'minor',
-  },
-  {
-    id: 5,
-    magnitude: 3.0,
-    place: 'Corinth Gulf, Greece',
-    depth: 243.6,
-    time: 30,
-    severity: 'light',
-  },
-]
+import { EventsDto } from '../api/fetch-events'
+import { formatTime, getSeverity } from '@/lib/event-helpers'
 
 const severityBadge: Record<string, string> = {
   minor: 'text-mag-minor bg-mag-minor/10',
@@ -52,10 +11,12 @@ const severityBadge: Record<string, string> = {
   strong: 'text-mag-strong bg-mag-strong/10',
   major: 'text-mag-major bg-mag-major/10',
 }
-
-export default function Feed() {
+type Props = {
+  events: EventsDto[]
+}
+export default function Feed({ events }: Props) {
   return (
-    <Container className="w-[35%] flex flex-col bg-bg-card rounded-md border-l border-border ">
+    <Container className="w-[35%] flex flex-col bg-bg-card rounded-md border-l border-border">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-accent-green animate-pulse" />
@@ -63,18 +24,20 @@ export default function Feed() {
             Live Feed
           </span>
         </div>
-        <span className="text-xs font-mono text-text-muted">20 events</span>
+        <span className="text-xs font-mono text-text-muted">
+          {events.length} events
+        </span>
       </div>
 
-      <ul className="flex flex-col  overflow-y-auto">
-        {mockEarthquakes.map((m, i) => (
+      <ul className="flex flex-col overflow-y-auto">
+        {events.map((event, i) => (
           <li
-            key={m.id}
+            key={event.id}
             className="flex items-center gap-3 px-4 py-3 border-b border-border hover:bg-bg-secondary transition-colors"
           >
             <div className="flex flex-col items-center justify-center w-14 h-14 rounded-md border border-border shrink-0 font-mono">
               <span className="text-lg font-bold leading-none text-text-primary">
-                {m.magnitude}
+                {event.magnitude.toFixed(1)}
               </span>
               <span className="text-[0.5rem] uppercase tracking-widest text-text-muted">
                 mag
@@ -86,10 +49,10 @@ export default function Feed() {
                 <span
                   className={clsx(
                     'text-[0.6rem] uppercase font-mono font-bold px-1.5 py-0.5 rounded',
-                    severityBadge[m.severity]
+                    severityBadge[getSeverity(event.magnitude)]
                   )}
                 >
-                  {m.severity}
+                  {getSeverity(event.magnitude)}
                 </span>
                 {i === 0 && (
                   <span className="text-[0.6rem] uppercase font-mono text-accent-green">
@@ -98,10 +61,10 @@ export default function Feed() {
                 )}
               </div>
               <span className="text-sm font-mono text-text-primary truncate">
-                {m.place}
+                {event.place}
               </span>
               <span className="text-xs font-mono text-text-muted">
-                {m.depth}km depth · {m.time}s ago
+                {event.depth.toFixed(1)}km depth · {formatTime(event.timeUtc)}
               </span>
             </div>
           </li>
