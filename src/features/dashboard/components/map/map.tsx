@@ -31,7 +31,7 @@ export default function SeismicMap({ events }: Props) {
         scrollWheelZoom={false}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png"
           attribution="© OpenStreetMap © CartoDB"
         />
         <LayerGroup>
