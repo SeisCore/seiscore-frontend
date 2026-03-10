@@ -7,79 +7,78 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  Cell,
 } from 'recharts'
 import { chartColors } from '../chart-colors'
-const data01 = [
-  { x: 100, y: 200, z: 200 },
-  { x: 120, y: 100, z: 260 },
-  { x: 170, y: 300, z: 400 },
-  { x: 140, y: 250, z: 280 },
-  { x: 150, y: 400, z: 500 },
-  { x: 110, y: 280, z: 200 },
-]
-const data02 = [
-  { x: 300, y: 300, z: 200 },
-  { x: 400, y: 500, z: 260 },
-  { x: 200, y: 700, z: 400 },
-  { x: 340, y: 350, z: 280 },
-  { x: 560, y: 500, z: 500 },
-  { x: 230, y: 780, z: 200 },
-  { x: 500, y: 400, z: 200 },
-  { x: 300, y: 500, z: 260 },
-  { x: 240, y: 300, z: 400 },
-  { x: 320, y: 550, z: 280 },
-  { x: 500, y: 400, z: 500 },
-  { x: 420, y: 280, z: 200 },
-]
 
-export default function SeismicScatterChart() {
+type Props = {
+  data: { magnitude: number; depth: number }[]
+}
+
+function getMagnitudeColor(mag: number): string {
+  const scale = chartColors.magnitudeScale
+  if (mag < 1) return scale[0]
+  if (mag < 2) return scale[1]
+  if (mag < 3) return scale[2]
+  if (mag < 4) return scale[3]
+  if (mag < 5) return scale[4]
+  return scale[5]
+}
+
+export default function SeismicScatterChart({ data }: Props) {
   return (
     <ResponsiveContainer>
       <ScatterChart>
-        <XAxis
-          type="number"
-          dataKey="x"
-          name="stature"
-          unit="cm"
-          stroke={chartColors.text}
-          tick={{ fill: chartColors.text }}
-        />
-        <YAxis
-          yAxisId="left"
-          type="number"
-          dataKey="y"
-          name="weight"
-          unit="kg"
-          width="auto"
-          stroke={chartColors.text}
-          tick={{ fill: chartColors.text }}
-        />
-        <YAxis
-          yAxisId="right"
-          type="number"
-          dataKey="y"
-          name="weight"
-          unit="kg"
-          orientation="right"
-          width="auto"
-          stroke={chartColors.text}
-          tick={{ fill: chartColors.text }}
+        <Tooltip
+          cursor={{ strokeDasharray: '3 3', stroke: chartColors.grid }}
+          contentStyle={{
+            background: '#0a1628',
+            border: '1px solid #1a2d4a',
+            borderRadius: 6,
+            color: chartColors.text,
+            fontSize: 13,
+          }}
+          labelStyle={{ display: 'none' }}
         />
         <CartesianGrid stroke={chartColors.grid} />
-
-        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-        <Scatter
-          yAxisId="left"
-          name="A school"
-          data={data01}
-          fill={chartColors.blue}
+        <XAxis
+          type="number"
+          dataKey="magnitude"
+          name="Magnitude"
+          label={{
+            value: 'Magnitude',
+            position: 'insideBottom',
+            fill: chartColors.text,
+          }}
+          stroke={chartColors.text}
+          tick={{ fill: chartColors.text }}
         />
-        <Scatter
-          yAxisId="right"
-          name="A school"
-          data={data02}
-          fill={chartColors.green}
+        <YAxis
+          type="number"
+          dataKey="depth"
+          name="Depth"
+          unit="km"
+          stroke={chartColors.text}
+          tick={{ fill: chartColors.text }}
         />
+        <Tooltip
+          cursor={{ strokeDasharray: '3 3' }}
+          contentStyle={{
+            background: '#0a1628',
+            border: '1px solid #1a2d4a',
+            borderRadius: 6,
+            color: chartColors.text,
+          }}
+        />
+        <Scatter data={data}>
+          {data.map((entry, i) => (
+            <Cell
+              key={i}
+              fill={getMagnitudeColor(entry.magnitude)}
+              opacity={0.8}
+            />
+          ))}
+        </Scatter>
       </ScatterChart>
     </ResponsiveContainer>
   )

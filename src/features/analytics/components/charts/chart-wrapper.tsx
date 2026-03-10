@@ -1,11 +1,14 @@
+'use client'
+
 import { cn } from '@/utils/cn'
 
 type Props = {
   title: string
-  subtitle: string
+  subtitle?: string
   children: React.ReactNode
   className?: string
 }
+
 export default function ChartWrapper({
   title,
   subtitle,
@@ -15,17 +18,19 @@ export default function ChartWrapper({
   return (
     <div
       className={cn(
-        className,
-        'bg-bg-card border border-border rounded-md  flex flex-col gap-2 px-4 pb-4 pt-2'
+        'flex flex-col bg-[#0a1628] border border-[#1a2d4a] rounded-xl p-5 gap-3',
+        className
       )}
     >
       <div>
-        <p className="text-xs uppercase font-mono tracking-widest text-text-secondary">
+        <p className="text-xs font-mono tracking-widest uppercase text-[#94a3b8]">
           {title}
         </p>
-        <p className="text-xs text-text-muted font-mono">{subtitle}</p>
+        {subtitle && (
+          <p className="text-xs text-[#475569] mt-0.5">{subtitle}</p>
+        )}
       </div>
-      <div className="grow min-h-0">{children}</div>
+      <div className="flex-1 min-h-0">{children}</div>
     </div>
   )
 }

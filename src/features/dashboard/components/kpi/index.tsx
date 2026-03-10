@@ -37,13 +37,13 @@ export default function DashboardKPI({ kpi }: Props) {
   ]
 
   return (
-    <ul className="grid grid-cols-4 gap-2">
+    <ul className="grid grid-cols-4 gap-3">
       {mappedItems.map((item, idx) => {
         const Icon = iconMap[item.title as keyof typeof iconMap]
 
         return (
           <li
-            className="flex flex-col rounded-md border border-border px-2 py-4 bg-bg-card"
+            className="flex flex-col rounded-md border border-border p-4 bg-bg-card"
             key={idx}
           >
             <span className="flex items-center gap-1 uppercase text-text-muted text-xs">
