@@ -1,28 +1,7 @@
 import clsx from 'clsx'
 import { Clock, Zap, MapPin, Activity } from 'lucide-react'
-const items = [
-  {
-    icon: Clock,
-    id: 1,
-    title: 'last hour',
-    value: 50,
-  },
-  {
-    id: 2,
-    title: 'strongest',
-    value: 2.7,
-  },
-  {
-    id: 3,
-    title: 'most active',
-    value: 13,
-  },
-  {
-    id: 4,
-    title: 'total recorded',
-    value: 122,
-  },
-]
+import { DashboardKpi } from '../api/fetch-dashboard-kpi'
+
 const colorMap = {
   'last hour': 'text-accent-blue',
   strongest: 'text-accent-red',
@@ -36,18 +15,38 @@ const iconMap = {
   'most active': MapPin,
   'total recorded': Activity,
 } as const
-export default function DashboardKPI() {
+type Props = {
+  kpi: DashboardKpi
+}
+export default function DashboardKPI({ kpi }: Props) {
+  if (!kpi) return null
+
+  const mappedItems = [
+    { title: 'last hour', value: kpi.lastHour, subtitle: 'Seismic events' },
+    { title: 'strongest', value: kpi.strongest, subtitle: 'Major' },
+    {
+      title: 'most active',
+      value: kpi.mostActiveCount,
+      subtitle: kpi.mostActivePlace,
+    },
+    {
+      title: 'total recorded',
+      value: kpi.totalRecorded,
+      subtitle: 'In session',
+    },
+  ]
+
   return (
     <ul className="grid grid-cols-4 gap-2">
-      {items.map((item) => {
+      {mappedItems.map((item, idx) => {
         const Icon = iconMap[item.title as keyof typeof iconMap]
 
         return (
           <li
-            className="flex flex-col rounded-md border border-border p-2 bg-bg-card"
-            key={item.id}
+            className="flex flex-col rounded-md border border-border px-2 py-4 bg-bg-card"
+            key={idx}
           >
-            <span className="flex items-center gap-1 uppercase text-text-secondary text-xs">
+            <span className="flex items-center gap-1 uppercase text-text-muted text-xs">
               <Icon size={12} /> {item.title}
             </span>
             <span
@@ -58,6 +57,7 @@ export default function DashboardKPI() {
             >
               {item.value}
             </span>
+            <span className="text-xs text-text-muted">{item.subtitle}</span>
           </li>
         )
       })}
