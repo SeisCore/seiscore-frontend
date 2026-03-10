@@ -1,4 +1,5 @@
 'use client'
+
 import {
   Bar,
   BarChart,
@@ -9,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { chartColors } from '../chart-colors'
+import { chartColors, tooltipStyle } from '../chart-config'
 
 type TopLocation = { place: string; maxMagnitude: number }
 type SeverityItem = { severity: string; count: number }
@@ -33,18 +34,6 @@ function getMagnitudeColor(mag: number): string {
   if (mag < 5) return chartColors.magnitudeScale[3]
   if (mag < 6) return chartColors.magnitudeScale[4]
   return chartColors.magnitudeScale[5]
-}
-
-const tooltipStyle = {
-  contentStyle: {
-    background: '#0a1628',
-    border: '1px solid #1a2d4a',
-    borderRadius: 6,
-    color: chartColors.text,
-    fontSize: 13,
-  },
-  labelStyle: { color: chartColors.accent },
-  cursor: { fill: 'rgba(255,255,255,0.04)' },
 }
 
 export default function SeismicBarChart({ layout, data }: Props) {
@@ -90,7 +79,7 @@ export default function SeismicBarChart({ layout, data }: Props) {
               fill={
                 isSeverity
                   ? getSeverityColor(entry.label)
-                  : getMagnitudeColor(entry.value) // ← bruker faktisk magnitude-verdi
+                  : getMagnitudeColor(entry.value)
               }
             />
           ))}

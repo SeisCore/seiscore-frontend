@@ -20,3 +20,16 @@ export const chartColors = {
     '#c026d3',
   ],
 }
+
+export const tooltipStyle = {
+  contentStyle: {
+    background: '#0a1628',
+    border: '1px solid #1a2d4a',
+    borderRadius: 6,
+    color: chartColors.text,
+    fontSize: 13,
+  },
+  labelStyle: { color: chartColors.accent },
+  itemStyle: { color: chartColors.text },
+  cursor: { fill: 'rgba(2, 1, 1, 0.04)' },
+}

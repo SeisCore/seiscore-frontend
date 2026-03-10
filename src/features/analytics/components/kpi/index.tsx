@@ -1,34 +1,42 @@
 import clsx from 'clsx'
-
-const analyticsItems = [
-  { id: 1, title: 'total events', value: '3,360' },
-  { id: 2, title: 'avg magnitude', value: 'M2.55' },
-  { id: 3, title: 'strongest', value: 'M8.0' },
-  { id: 4, title: 'time window', value: '7 Days' },
-]
+import { AnalyticsKpi } from '../../api/fetch-analytics-kpi'
 
 const colorMap = {
-  'total events': 'text-accent-blue',
-  'avg magnitude': 'text-accent-amber',
-  strongest: 'text-accent-red',
-  'time window': 'text-accent-purple',
+  'TOTAL EVENTS': 'text-accent-blue',
+  'AVG MAGNITUDE': 'text-accent-amber',
+  STRONGEST: 'text-accent-red',
+  'AVG DEPTH': 'text-accent-purple',
 } as const
 
-export default function AnalyticsKPI() {
+type Props = {
+  data: AnalyticsKpi
+}
+
+export default function AnalyticsKPI({ data }: Props) {
+  const mappedItems = [
+    { id: 1, title: 'TOTAL EVENTS', value: data.totalEvents.toFixed(0) },
+    {
+      id: 2,
+      title: 'AVG MAGNITUDE',
+      value: `M${data.avgMagnitude.toFixed(2)}`,
+    },
+    { id: 3, title: 'STRONGEST', value: `M${data.maxMagnitude.toFixed(1)}` },
+    { id: 4, title: 'AVG DEPTH', value: `${data.avgDepth.toFixed(1)} km` },
+  ]
   return (
     <ul className="grid grid-cols-4 gap-2">
-      {analyticsItems.map((item) => (
+      {mappedItems.map((item) => (
         <li
-          className="flex flex-col rounded-md border border-border p-2 bg-bg-card"
+          className="flex flex-col rounded-md border border-border p-4 bg-bg-card"
           key={item.id}
         >
-          <span className="uppercase text-text-secondary text-xs font-mono">
+          <span className="flex items-center gap-1 uppercase text-text-muted text-xs">
             {item.title}
           </span>
           <span
             className={clsx(
               'text-2xl font-mono',
-              colorMap[item.title as keyof typeof colorMap]
+              colorMap[item.title.toUpperCase() as keyof typeof colorMap]
             )}
           >
             {item.value}

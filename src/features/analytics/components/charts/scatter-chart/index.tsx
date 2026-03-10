@@ -9,7 +9,7 @@ import {
   YAxis,
   Cell,
 } from 'recharts'
-import { chartColors } from '../chart-colors'
+import { chartColors, tooltipStyle } from '../chart-config'
 
 type Props = {
   data: { magnitude: number; depth: number }[]
@@ -29,17 +29,7 @@ export default function SeismicScatterChart({ data }: Props) {
   return (
     <ResponsiveContainer>
       <ScatterChart>
-        <Tooltip
-          cursor={{ strokeDasharray: '3 3', stroke: chartColors.grid }}
-          contentStyle={{
-            background: '#0a1628',
-            border: '1px solid #1a2d4a',
-            borderRadius: 6,
-            color: chartColors.text,
-            fontSize: 13,
-          }}
-          labelStyle={{ display: 'none' }}
-        />
+        <Tooltip {...tooltipStyle} />
         <CartesianGrid stroke={chartColors.grid} />
         <XAxis
           type="number"
@@ -61,15 +51,7 @@ export default function SeismicScatterChart({ data }: Props) {
           stroke={chartColors.text}
           tick={{ fill: chartColors.text }}
         />
-        <Tooltip
-          cursor={{ strokeDasharray: '3 3' }}
-          contentStyle={{
-            background: '#0a1628',
-            border: '1px solid #1a2d4a',
-            borderRadius: 6,
-            color: chartColors.text,
-          }}
-        />
+        <Tooltip {...tooltipStyle} />
         <Scatter data={data}>
           {data.map((entry, i) => (
             <Cell

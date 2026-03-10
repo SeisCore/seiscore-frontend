@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { chartColors } from '../chart-colors'
+import { chartColors, tooltipStyle } from '../chart-config'
 
 type DataPoint = { hour?: string; day?: string; count: number }
 type Props = { data: DataPoint[] }
@@ -37,14 +37,7 @@ export default function SeismicLineChart({ data }: Props) {
           tick={{ fill: chartColors.text }}
         />
         <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} />
-        <Tooltip
-          contentStyle={{
-            background: '#0a1628',
-            border: '1px solid #1a2d4a',
-            borderRadius: 6,
-            color: chartColors.text,
-          }}
-        />
+        <Tooltip {...tooltipStyle} />
         <Line
           dataKey="count"
           type="monotone"
