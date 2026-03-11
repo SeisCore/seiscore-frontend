@@ -1,19 +1,18 @@
 'use client'
 import EChartsReact from 'echarts-for-react'
-import { chartColors } from '../../charts/chart-config'
-import { echartsBase } from '../config'
+import { echartsBase, echartsColors } from '../config'
 
 type Props = {
   data: { place: string; maxMagnitude: number }[]
 }
 
 function getMagnitudeColor(mag: number): string {
-  if (mag < 2) return chartColors.magnitudeScale[0]
-  if (mag < 3) return chartColors.magnitudeScale[1]
-  if (mag < 4) return chartColors.magnitudeScale[2]
-  if (mag < 5) return chartColors.magnitudeScale[3]
-  if (mag < 6) return chartColors.magnitudeScale[4]
-  return chartColors.magnitudeScale[5]
+  if (mag < 2) return echartsColors.magnitudeScale[0]
+  if (mag < 3) return echartsColors.magnitudeScale[1]
+  if (mag < 4) return echartsColors.magnitudeScale[2]
+  if (mag < 5) return echartsColors.magnitudeScale[3]
+  if (mag < 6) return echartsColors.magnitudeScale[4]
+  return echartsColors.magnitudeScale[5]
 }
 
 export default function MostActiveRegion({ data }: Props) {
@@ -23,9 +22,9 @@ export default function MostActiveRegion({ data }: Props) {
     xAxis: {
       type: 'category',
       data: data.map((d) => d.place),
-      axisLine: { lineStyle: { color: chartColors.grid } },
+      axisLine: { lineStyle: { color: echartsColors.grid } },
       axisLabel: {
-        color: chartColors.text,
+        color: echartsColors.text,
         fontSize: 10,
         interval: 0,
         overflow: 'truncate',
@@ -36,8 +35,8 @@ export default function MostActiveRegion({ data }: Props) {
     yAxis: {
       type: 'value',
       axisLine: { show: false },
-      axisLabel: { color: chartColors.text, fontSize: 11 },
-      splitLine: { lineStyle: { color: chartColors.grid, type: 'dashed' } },
+      axisLabel: { color: echartsColors.text, fontSize: 11 },
+      splitLine: { lineStyle: { color: echartsColors.grid, type: 'dashed' } },
     },
     series: [
       {

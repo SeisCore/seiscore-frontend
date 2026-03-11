@@ -1,51 +1,48 @@
 import Container from '@/components/wrappers/container'
-import SeismicLineChart from './line-chart'
-import ChartWrapper from './chart-wrapper'
-import SeismicBarChart from './bar-chart'
-import SeismicScatterChart from './scatter-chart'
 import { ChartData } from '../../api/fetch-chart-data'
+import SeismicEventsPerHour from './line-chart/seismic-events-per-hour'
+import SeismicEventsPerDay from './line-chart/seismic-events-per-day'
+import SeverityDistribution from './bar-chart/severity-distribution'
+import MostActiveRegion from './bar-chart/most-active-region'
+import MagnitudeDepth from './scatter-chart'
+import ChartWrapper from './chart-wrapper'
 
 type Props = {
   data: ChartData
 }
-
 export default function Charts({ data }: Props) {
   return (
-    <Container className="grid grid-cols-2 h-screen gap-2">
+    <Container className="grid grid-cols-2 h-screen gap-x-2 gap-y-4">
       <ChartWrapper
-        title="Seismic Events Per Hour"
-        subtitle="Events per hour — last 24 hours"
+        title="Seismic events per day"
+        subtitle="Average events per day"
       >
-        <SeismicLineChart data={data.eventsPerHour} />
+        <SeismicEventsPerDay data={data.eventsPerDay} />
       </ChartWrapper>
-
       <ChartWrapper
-        title="Most Active Regions"
-        subtitle="Top 10 locations by highest magnitude"
+        title="Seismic events per hour"
+        subtitle="Average events per hour"
       >
-        <SeismicBarChart layout="horizontal" data={data.topLocations} />
+        <SeismicEventsPerHour data={data.eventsPerHour} />
       </ChartWrapper>
-
       <ChartWrapper
         title="Severity Distribution"
-        subtitle="Total events by severity class"
+        subtitle="Event count by severity"
       >
-        <SeismicBarChart layout="vertical" data={data.severityDistribution} />
+        <SeverityDistribution data={data.severityDistribution} />
       </ChartWrapper>
-
       <ChartWrapper
-        title="Events Per Day"
-        subtitle="Daily event count — last 30 days"
+        title="Most Active Regions"
+        subtitle="Total events by region"
       >
-        <SeismicLineChart data={data.eventsPerDay} />
+        <MostActiveRegion data={data.topLocations} />
       </ChartWrapper>
-
       <ChartWrapper
         className="col-span-2"
         title="Magnitude vs Depth"
         subtitle="Scatter plot of magnitude against depth"
       >
-        <SeismicScatterChart data={data.magnitudeVsDepth} />
+        <MagnitudeDepth data={data.magnitudeVsDepth} />
       </ChartWrapper>
     </Container>
   )

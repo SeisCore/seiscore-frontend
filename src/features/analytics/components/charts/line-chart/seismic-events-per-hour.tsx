@@ -1,7 +1,6 @@
 'use client'
 import EChartsReact from 'echarts-for-react'
-import { echartsBase } from '../config'
-import { chartColors } from '../../charts/chart-config'
+import { echartsBase, echartsColors } from '../config'
 
 type Props = {
   data: { hour?: string; day?: string; count: number }[]
@@ -27,15 +26,15 @@ export default function SeismicEventsPerHour({ data }: Props) {
     xAxis: {
       type: 'category',
       data: xAxisData,
-      axisLine: { lineStyle: { color: chartColors.grid } },
-      axisLabel: { color: chartColors.text, fontSize: 11 },
+      axisLine: { lineStyle: { color: echartsColors.grid } },
+      axisLabel: { color: echartsColors.text, fontSize: 11 },
       splitLine: { show: false },
     },
     yAxis: {
       type: 'value',
       axisLine: { show: false },
-      axisLabel: { color: chartColors.text, fontSize: 11 },
-      splitLine: { lineStyle: { color: chartColors.grid, type: 'dashed' } },
+      axisLabel: { color: echartsColors.text, fontSize: 11 },
+      splitLine: { lineStyle: { color: echartsColors.grid, type: 'dashed' } },
     },
     series: [
       {
@@ -44,8 +43,8 @@ export default function SeismicEventsPerHour({ data }: Props) {
         smooth: true,
         symbol: 'circle',
         symbolSize: 6,
-        lineStyle: { color: chartColors.accent, width: 2 },
-        itemStyle: { color: chartColors.accent },
+        lineStyle: { color: echartsColors.accent, width: 2 },
+        itemStyle: { color: echartsColors.accent },
         areaStyle: {
           color: {
             type: 'linear',
@@ -54,8 +53,8 @@ export default function SeismicEventsPerHour({ data }: Props) {
             x2: 0,
             y2: 1,
             colorStops: [
-              { offset: 0, color: `${chartColors.accent}33` },
-              { offset: 1, color: `${chartColors.accent}00` },
+              { offset: 0, color: `${echartsColors.accent}33` },
+              { offset: 1, color: `${echartsColors.accent}00` },
             ],
           },
         },

@@ -1,7 +1,6 @@
 'use client'
 import EChartsReact from 'echarts-for-react'
-import { echartsBase } from '../config'
-import { chartColors } from '../../charts/chart-config'
+import { echartsBase, echartsColors } from '../config'
 
 type Props = {
   data: { severity: string; count: number }[]
@@ -13,15 +12,15 @@ export default function SeverityDistribution({ data }: Props) {
     grid: { top: 8, right: 24, bottom: 8, left: 80, containLabel: false },
     xAxis: {
       type: 'value',
-      axisLabel: { color: chartColors.text, fontSize: 11 },
+      axisLabel: { color: echartsColors.text, fontSize: 11 },
       axisLine: { show: false },
-      splitLine: { lineStyle: { color: chartColors.grid, type: 'dashed' } },
+      splitLine: { lineStyle: { color: echartsColors.grid, type: 'dashed' } },
     },
     yAxis: {
       type: 'category',
       data: data.map((d) => d.severity),
-      axisLabel: { color: chartColors.text, fontSize: 12 },
-      axisLine: { lineStyle: { color: chartColors.grid } },
+      axisLabel: { color: echartsColors.text, fontSize: 12 },
+      axisLine: { lineStyle: { color: echartsColors.grid } },
       splitLine: { show: false },
     },
     series: [
@@ -31,9 +30,9 @@ export default function SeverityDistribution({ data }: Props) {
           value: d.count,
           itemStyle: {
             color:
-              chartColors.severity[
-                d.severity.toLowerCase() as keyof typeof chartColors.severity
-              ] ?? chartColors.blue,
+              echartsColors.severity[
+                d.severity.toLowerCase() as keyof typeof echartsColors.severity
+              ] ?? echartsColors.blue,
             borderRadius: [0, 4, 4, 0],
           },
         })),
