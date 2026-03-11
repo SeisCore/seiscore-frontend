@@ -18,7 +18,7 @@ export default function ChartWrapper({
   return (
     <div
       className={cn(
-        'flex flex-col bg-[#0a1628] border border-[#1a2d4a] rounded-xl p-5 gap-3',
+        'flex flex-col bg-bg-card border border-[#1a2d4a]  rounded-xl p-5 gap-3',
         className
       )}
     >
