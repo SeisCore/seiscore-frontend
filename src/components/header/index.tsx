@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Nav from '../nav'
 import Container from '../wrappers/container'
-import Mode from './mode'
 
 export default function Header() {
   return (
@@ -14,7 +13,6 @@ export default function Header() {
         </div>
         <Container className="flex gap-4">
           <Nav />
-          <Mode />
         </Container>
       </Container>
     </header>

@@ -34,7 +34,7 @@ const colorMap: Record<string, string> = {
 }
 export default function MagnitudeScale() {
   return (
-    <div className="absolute top-5 left-15 z-[1000] bg-bg-card border-gray-200 uppercase p-4 rounded-md text-xs">
+    <div className="absolute top-5 right-15 z-[1000] bg-bg-card border-gray-200 uppercase p-4 rounded-md text-xs opacity-70">
       <span className="text-text-secondary">magnitude scale</span>
 
       <ul className="flex flex-col gap-2 py-2">
