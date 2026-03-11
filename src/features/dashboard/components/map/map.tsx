@@ -8,7 +8,7 @@ import {
   TileLayer,
 } from 'react-leaflet'
 import { EventsDto } from '../api/fetch-events'
-import { getSeverity, getSeverityColor } from '@/lib/event-helpers'
+import { getSeverity, getSeverityColor } from '@/utils/event-helpers'
 import MagnitudeScale from './scale'
 
 type Props = {

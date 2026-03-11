@@ -2,7 +2,7 @@
 import Container from '@/components/wrappers/container'
 import clsx from 'clsx'
 import { EventsDto } from '../api/fetch-events'
-import { formatTime, getSeverity } from '@/lib/event-helpers'
+import { formatTime, getSeverity } from '@/utils/event-helpers'
 
 const severityBadge: Record<string, string> = {
   minor: 'text-mag-minor bg-mag-minor/10',
