@@ -21,7 +21,7 @@ export default function Feed({ events }: Props) {
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-accent-green animate-pulse" />
           <span className="uppercase text-xs font-mono tracking-widest text-text-secondary">
-            Live Feed
+            Recent Events
           </span>
         </div>
         <span className="text-xs font-mono text-text-muted">

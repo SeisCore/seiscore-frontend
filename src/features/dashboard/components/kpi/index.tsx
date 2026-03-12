@@ -18,12 +18,25 @@ const iconMap = {
 type Props = {
   kpi: DashboardKpi
 }
+
+function getMagnitudeLabel(value: number): string {
+  if (value < 2) return 'Minor'
+  if (value < 4) return 'Light'
+  if (value < 5) return 'Moderate'
+  if (value < 7) return 'Strong'
+  return 'Major'
+}
 export default function DashboardKPI({ kpi }: Props) {
   if (!kpi) return null
 
   const mappedItems = [
     { title: 'last hour', value: kpi.lastHour, subtitle: 'Seismic events' },
-    { title: 'strongest', value: kpi.strongest, subtitle: 'Major' },
+    {
+      title: 'strongest',
+      value: `M${kpi.strongest.toFixed(1)}`,
+
+      subtitle: getMagnitudeLabel(kpi.strongest),
+    },
     {
       title: 'most active',
       value: kpi.mostActiveCount,
