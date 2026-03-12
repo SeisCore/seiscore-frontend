@@ -27,8 +27,8 @@ export default function SeismicMap({ events }: Props) {
           borderColor: 'var(--color-border)',
         }}
         center={[20, 0]}
-        zoom={2}
-        scrollWheelZoom={false}
+        zoom={3}
+        scrollWheelZoom={true}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png"
@@ -41,7 +41,7 @@ export default function SeismicMap({ events }: Props) {
                 center={[event.latitude, event.longitude]}
                 key={i}
                 pathOptions={getSeverityColor(event.magnitude)}
-                radius={event.magnitude * 8}
+                radius={Math.max(Math.pow(event.magnitude, 2) * 2, 4)}
                 eventHandlers={{
                   mouseover: (e) => e.target.openPopup(),
                   mouseout: (e) => e.target.closePopup(),

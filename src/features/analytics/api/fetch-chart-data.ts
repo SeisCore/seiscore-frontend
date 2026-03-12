@@ -11,7 +11,7 @@ export type ChartData = {
 
 export async function fetchChartData(): Promise<APIResponse<ChartData>> {
   try {
-    const res = await fetch(`${API_URL}/analytics`)
+    const res = await fetch(`${API_URL}/analytics`, { cache: 'no-cache' })
     if (!res.ok) {
       return { ok: false }
     }

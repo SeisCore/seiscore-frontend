@@ -15,17 +15,17 @@ export type EventsDto = {
 
 export async function fetchEvents(): Promise<APIResponse<EventsDto[]>> {
   try {
-    const res = await fetch(`${API_URL}/events`)
+    const res = await fetch(`${API_URL}/events`, {
+      cache: 'no-cache',
+    })
 
     if (res.status !== 200) {
-      return { ok: false, error: 'err' }
+      return { ok: false }
     }
-    if (!res.ok) {
-      return { ok: false, error: 'err' }
-    }
+
     const json = await res.json()
     return { ok: true, data: json }
   } catch {
-    return { ok: false, error: 'err' }
+    return { ok: false }
   }
 }

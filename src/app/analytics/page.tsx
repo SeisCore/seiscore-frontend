@@ -6,12 +6,11 @@ import AnalyticsKPI from '@/features/analytics/components/kpi'
 
 export default async function Page() {
   const data = await fetchChartData()
-  const kpiData = await fetchAnalyticsKpi()
+  const kpi = await fetchAnalyticsKpi()
   if (!data.ok) return null
-  if (!kpiData.ok) return null
   return (
     <Section className="flex flex-col gap-5 py-2">
-      <AnalyticsKPI data={kpiData.data} />
+      {kpi.ok && <AnalyticsKPI data={kpi.data} />}
       <Charts data={data.data} />
     </Section>
   )

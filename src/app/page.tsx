@@ -10,11 +10,10 @@ import SeismicMapWrapper from '@/features/dashboard/components/map'
 export default async function Page() {
   const events = await fetchEvents()
   const kpi = await fetchDashboardKpi()
-  if (!events.ok) return <p>No event found</p>
-  if (!kpi.ok) return <p>No kpi found</p>
+  if (!events.ok) return null
   return (
     <Section className="flex flex-col gap-4 py-2 h-screen">
-      <KPI kpi={kpi.data} />
+      {kpi.ok && <KPI kpi={kpi.data} />}
       <Container className="flex gap-5 grow min-h-0">
         <SeismicMapWrapper events={events.data} />
         <Feed events={events.data} />

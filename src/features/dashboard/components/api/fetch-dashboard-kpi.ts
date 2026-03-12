@@ -11,7 +11,9 @@ export type DashboardKpi = {
 
 export async function fetchDashboardKpi(): Promise<APIResponse<DashboardKpi>> {
   try {
-    const res = await fetch(`${API_URL}/dashboard/kpi`, {})
+    const res = await fetch(`${API_URL}/dashboard/kpi`, {
+      cache: 'no-cache',
+    })
     if (res.status !== 200) {
       return { ok: false }
     }
