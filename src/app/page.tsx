@@ -7,6 +7,12 @@ import KPI from '@/features/dashboard/components/kpi'
 
 import SeismicMapWrapper from '@/features/dashboard/components/map'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'SeisCore — Dashboard',
+  description: 'Live seismic event map and recent activity feed.',
+}
 export default async function Page() {
   const events = await fetchEvents()
   const kpi = await fetchDashboardKpi()

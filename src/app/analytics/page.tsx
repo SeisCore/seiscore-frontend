@@ -4,6 +4,13 @@ import { fetchChartData } from '@/features/analytics/api/fetch-chart-data'
 import Charts from '@/features/analytics/components/charts'
 import AnalyticsKPI from '@/features/analytics/components/kpi'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'SeisCore — Analytics',
+  description:
+    'Seismic data analysis — severity distribution, event trends and magnitude depth correlation.',
+}
 export default async function Page() {
   const data = await fetchChartData()
   const kpi = await fetchAnalyticsKpi()
