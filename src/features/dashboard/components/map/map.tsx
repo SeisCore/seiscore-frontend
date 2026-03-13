@@ -43,8 +43,7 @@ export default function SeismicMap({ events }: Props) {
                 pathOptions={getSeverityColor(event.magnitude)}
                 radius={Math.max(Math.pow(event.magnitude, 2) * 2, 4)}
                 eventHandlers={{
-                  mouseover: (e) => e.target.openPopup(),
-                  mouseout: (e) => e.target.closePopup(),
+                  click: (e) => e.target.openPopup(),
                 }}
               >
                 <Popup>
@@ -70,6 +69,13 @@ export default function SeismicMap({ events }: Props) {
                       {new Date(event.timeUtc).toLocaleTimeString()}
                     </p>
                   </div>
+                  <a
+                    href={`https://www.google.com/maps?q=${event.latitude},${event.longitude}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open in Google Maps
+                  </a>
                 </Popup>
               </CircleMarker>
             )
