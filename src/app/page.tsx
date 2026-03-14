@@ -6,6 +6,7 @@ import Feed from '@/features/dashboard/components/feed'
 import KPI from '@/features/dashboard/components/kpi'
 
 import SeismicMapWrapper from '@/features/dashboard/components/map'
+import SeverityToggle from '@/features/dashboard/components/severity-toggle'
 
 import { Metadata } from 'next'
 
@@ -19,6 +20,7 @@ export default async function Page() {
   if (!events.ok) return null
   return (
     <Section className="flex flex-col gap-4 py-2 h-screen">
+      <SeverityToggle />
       {kpi.ok && <KPI kpi={kpi.data} />}
       <Container className="flex gap-5 grow min-h-0">
         <SeismicMapWrapper events={events.data} />
